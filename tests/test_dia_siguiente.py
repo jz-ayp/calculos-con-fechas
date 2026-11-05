@@ -3,11 +3,12 @@ from random import randint
 from funciones_fecha import dia_siguiente
 
 
-# Generar una lista de fechas para probar la función
-# Para cada mes (1-12) la lista incluye:
+# Se probará la función con diferentes fechas de cada mes:
 #  - el día primero
 #  - un día al azar a medio mes (por simplicidad, entre 2 y 27)
 #  - el último día del mes
+# Adicionalmente, con fechas de febrero de diferentes tipos de año bisiesto.
+
 def test_dia_siguiente_primero():
     "Prueba la función con fechas del primer día de cada mes del año actual"
     anho = date.today().year
