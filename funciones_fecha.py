@@ -1,8 +1,6 @@
 def es_bisiesto(anho):
-    "Determinar si un año dado es bisiesto"
-    if anho % 400 == 0:
-        bisiesto = True
-    elif anho % 4 == 0 and anho % 100 != 0:
+    "Determina si un año dado es bisiesto."
+    if anho % 400 == 0 or anho % 4 == 0 and anho % 100 != 0:
         bisiesto = True
     else:
         bisiesto = False
@@ -10,17 +8,14 @@ def es_bisiesto(anho):
 
 
 def dias_del_mes(mes, anho=None):
-    "Determinar la cantidad de días que tiene un mes dado, si no se indica el año, se supone no bisiesto"
+    "Calcula la cantidad de días que tiene un mes dado. Si no se indica el año, se supone no bisiesto."
     if mes in (1, 3, 5, 7, 8, 10, 12):
         dias = 31
     elif mes in (4, 6, 9, 11):
         dias = 30
     else:
         # Febrero, necesitamos checar si el año es bisiesto
-        if anho == None:
-            # No se pasó el año, suponer que no es bisiesto
-            dias = 28
-        elif es_bisiesto(anho):
+        if anho is not None and es_bisiesto(anho):
             dias = 29
         else:
             dias = 28
@@ -28,7 +23,7 @@ def dias_del_mes(mes, anho=None):
 
 
 def dia_siguiente(dia, mes, anho):
-    "Determina la fecha del día siguiente"
+    "Determina la fecha correspondiente al siguiente día."
     dia += 1
     if dia > dias_del_mes(mes, anho):
         dia = 1
@@ -40,7 +35,7 @@ def dia_siguiente(dia, mes, anho):
 
 
 def dia_anterior(dia, mes, anho):
-    "Determina la fecha del día anterior"
+    "Determina la fecha correspondiente al día anterior"
     dia -= 1
     if dia == 0:
         mes -= 1
@@ -55,9 +50,11 @@ def sumar_dias(fecha, dias):
     "Suma (o resta) una determinada cantidad de días a una fecha (tupla: día, mes, año)"
     dia, mes, anho = fecha
     if dias > 0:
+        # Para sumar n días, se llama a la función dia_siguiente n veces
         for _ in range(dias):
             dia, mes, anho = dia_siguiente(dia, mes, anho)
     else:
+        # Para restar n días, se llama a la función dia_anterior n veces
         for _ in range(-dias):
             dia, mes, anho = dia_anterior(dia, mes, anho)
     return dia, mes, anho
