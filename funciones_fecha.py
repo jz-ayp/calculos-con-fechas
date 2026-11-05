@@ -55,10 +55,10 @@ def sumar_dias(fecha, dias):
     "Suma (o resta) una determinada cantidad de días a una fecha (tupla: día, mes, año)"
     dia, mes, anho = fecha
     if dias > 0:
-        for i in range(dias):
+        for _ in range(dias):
             dia, mes, anho = dia_siguiente(dia, mes, anho)
     else:
-        for i in range(-dias):
+        for _ in range(-dias):
             dia, mes, anho = dia_anterior(dia, mes, anho)
     return dia, mes, anho
 
