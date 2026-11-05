@@ -11,12 +11,14 @@ def es_bisiesto(anho):
 
 def dias_del_mes(mes, anho=None):
     "Determinar la cantidad de días que tiene un mes dado, si no se indica el año, se supone no bisiesto"
-    if mes in [1, 3, 5, 7, 8, 10, 12]:
+    if mes in (1, 3, 5, 7, 8, 10, 12):
         dias = 31
-    elif mes in [4, 6, 9, 11]:
+    elif mes in (4, 6, 9, 11):
         dias = 30
     else:
+        # Febrero, necesitamos checar si el año es bisiesto
         if anho == None:
+            # No se pasó el año, suponer que no es bisiesto
             dias = 28
         elif es_bisiesto(anho):
             dias = 29
